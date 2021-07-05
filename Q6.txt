@@ -1,0 +1,38 @@
+1. Is this a good database design? Why?
+This database is a pretty good design. Each category is clearly divided
+to reduce redundancy. The relation between each data is clean and transparent.
+
+2. If your answer to question 1 is no, what can you propose to improve the
+design?
+-
+
+3. Write a SQL query based on the above schema to retrieve information about
+the following items. Assume that TRANSACTION_DATE column is in UTC
+time zone. We need to generate report in Malaysia time.
+
+a. Who is the top spender in this online store?
+
+SELECT TBL_TRANSACTIONS.ORDERID, SUM(TBL_TRANSACTIONS.QUANTITY*TBL_TRANSACTIONS.UNIT PRICE) as 
+Total_Amount
+FROM TBL_TRANSACTIONS INNER JOIN Orders
+     on TBL_TRANSACTIONS.ORDERID = TBL_ORDERS.ORDERID JOIN
+     OrderDetails
+     on TBL_ORDERS.USERID = TBL_CUSTOMERS.USERID
+GROUP BY NAME;
+
+b. Tell me the number of transactions in each hour of the day.
+
+
+c. What kind of fruits (item) did Adam buy so far?
+SELECT TBL_ORDERS.ORDERID, TBL_CUSTOMERS.NAME, TBL_TRANSACTIONS.ITEM
+FROM TBL_ORDERS, TBL_CUSTOMERS, TBL_TRANSACTIONS
+WHERE TBL_ORDERS.USERID = TBL_CUSTOMERS.USERID; 
+
+d. What’s the average transacted sale value for each customer?
+SELECT TBL_TRANSACTIONS.ORDERID, SUM(TBL_TRANSACTIONS.QUANTITY*TBL_TRANSACTIONS.UNIT PRICE) as 
+Total_Amount
+FROM TBL_TRANSACTIONS INNER JOIN Orders
+     on TBL_TRANSACTIONS.ORDERID = TBL_ORDERS.ORDERID JOIN
+     OrderDetails
+     on TBL_ORDERS.USERID = TBL_CUSTOMERS.USERID
+GROUP BY AVG(Total_Amount);
