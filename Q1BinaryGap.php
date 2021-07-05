@@ -33,9 +33,16 @@ function solution($N)
 	
     $binaryGap =  explode("1", $binaryNo); // explode to split 1 
 	
-    $binaryLongest = array_map('strlen', $binaryGap); //use to apply strlen calback to the arrays
+	$binaryLongest = 0; //set leng of longest binary gap
+  
+    foreach ($binaryGap as $zero) {
+        $length = strlen($zero);
+        if ($length > $binaryLongest) {
+            $binaryLongest = $length;
+        }
+    }
 	
-	return max($binaryLongest); //return maximum length of binary gap
+	return $binaryLongest; //return maximum length of binary gap
 }
 
 //For example, given N = 1041 the function should return 5, because N has binary
