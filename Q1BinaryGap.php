@@ -31,7 +31,7 @@ function solution($N)
 	
     $binaryNo = trim($binaryNo, "0"); // Remove Zero
 	
-    $binaryGap =  explode("1", $binaryNo); // explode to split 1 
+    $binaryGap =  explode("1", $binaryNo); // explode to split chac of 1 
 	
 	$binaryLongest = 0; //set leng of longest binary gap
   
@@ -45,10 +45,8 @@ function solution($N)
 	return $binaryLongest; //return maximum length of binary gap
 }
 
-//For example, given N = 1041 the function should return 5, because N has binary
-//representation 10000010001 and so its longest binary gap is of length 5.
-echo solution(1041);//Answer correct
 
-//Example 2: given N = 52, which has a binary representation of 110100, the longest
-//binary gap will be 1.
-echo solution(52); //Answer correct
+echo solution(1041);//Answer is 5
+
+
+echo solution(52); //Answer is 1
